@@ -4,7 +4,7 @@ import { useState } from 'react';
 import data from './data'
 function Accordion(){
     const [arr,setArr]=useState([]);
-    function handleAccordion(q){
+    function handleMultipleSelection(q){
         // const btn=event.target;
         // const div=event.target.parentElement.nextSibling;
         
@@ -25,7 +25,7 @@ function Accordion(){
     }
     
     const [selected,setSelected] = useState();
-    function handleSelection(q){
+    function handleSingleSelection(q){
         q===selected
         ?setSelected(null)
         :setSelected(q);
@@ -46,15 +46,15 @@ function Accordion(){
                         <div key={index} id="accordion" className='mb-5' >
                             <div onClick={
                                 data &&!multiEnabled
-                                ? ()=>handleSelection(q.id)
-                                : ()=>handleAccordion(q.id)
+                                ? ()=>handleSingleSelection(q.id)
+                                : ()=>handleMultipleSelection(q.id)
                             } className='bg-black text-white rounded-xl p-5 m-0 flex flex-row justify-between'>
                                 <p >{q.id}</p>
                                 <div>{q.question}</div>
                                 <button onClick={
                                     !multiEnabled
-                                    ? ()=>handleSelection(q.id)
-                                    : ()=>handleAccordion(q.id)
+                                    ? ()=>handleSingleSelection(q.id)
+                                    : ()=>handleMultipleSelection(q.id)
                                 } className='bg-black text-white rounded-full flex justify-center align-center w-8 h-8 border-2 border-white transition duration-300 ease-in-out hover:text-black hover:bg-white '>
                                     {   
                                         multiEnabled
@@ -67,10 +67,10 @@ function Accordion(){
                             {
                                 data&&multiEnabled
                                 ?arr.indexOf(q.id)!=-1
-                                    ?<div className="bg-gray-700 p-5 pt-0 text-left mb-3 mt-0 text-white border-2 border-white rounded-xl transition duration-300 ease-in-out ">{q.answer}</div>
+                                    ?<div className="bg-gray-700 p-5 text-left mb-3 mt-0 text-white border-2 border-white rounded-b-xl transition duration-300 ease-in-out ">{q.answer}</div>
                                     :null
                                 :selected===q.id
-                                    ?<div className="bg-gray-700 p-5 text-left mb-3 text-white border-2 border-white rounded-xl transition duration-300 ease-in-out ">{q.answer}</div>
+                                    ?<div className="bg-gray-700 p-5 text-left mb-3 text-white border-2 border-white rounded-b-xl transition duration-300 ease-in-out ">{q.answer}</div>
                                     :null   
                             }
                             
