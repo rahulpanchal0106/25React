@@ -23,7 +23,7 @@ function Rating({noOstars}){
     return (
         <>
             <div>
-                Star rating: {rating}
+                {rating<5?`Star rating: ${rating}`:`Eat 5 star, Do nothing.`}
             </div>
             <div className='flex flex-column justify-center'>
                 {
