@@ -2,6 +2,7 @@ import './App.css'
 import Accordion from './components/Accordion/Accordion'
 import GenColor from './components/GenRandomColor/GenColor'
 import ImgSlider from './components/ImgSlider/ImgSlider'
+import LoadMore from './components/LoadMore/LoadMore'
 import Rating from './components/StarRating/Rating'
 function App() {
 
@@ -29,6 +30,11 @@ function App() {
 
         limit={"10"}
       />
+      <br/>
+
+      {/* Load More Button */}
+      <br/>
+      <LoadMore/>
       <br/>
     </>
   )
