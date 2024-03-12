@@ -7,7 +7,7 @@ function LoadMore(){
     async function fetchData(url){
         const res=await fetch(url);
         const urlData=await res.json();
-        console.log(count);
+        
         console.log(urlData);
         setJsonData(urlData);
         const tempCurrData= urlData;
@@ -21,6 +21,10 @@ function LoadMore(){
         const nextData=jsonData.products.filter((_,i)=>i<count);
         const data=[...nextData];
         setCurrData(data);
+        console.log(count);
+    }
+    function handleNo(event){
+        event.target.innerHTML="No More DATA!"
     }
     return(
         <>
@@ -59,12 +63,17 @@ function LoadMore(){
                             )
                         }):
                         <div >
-
+                           Loading data...
                         </div>
                         
                     }
                     <div className="w-full text-white bg-black p-2 rounded-2xl flex flex-col justify-center iterms-center h-10 self-center">
-                        <button onClick={()=>handleCurrData()} >Load more</button>
+                        
+                        {
+                            count>=120
+                            ?<button className="bg-gray-100 transition duration-300 text-black rounded-2xl active:text-red-700 hover:bg-orange-500" onClick={(e)=>handleNo(e)} >No more</button>
+                            :<button onClick={()=>handleCurrData()} >Load more</button>
+                        }
                     </div>
                 </div>
                 
